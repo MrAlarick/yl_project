@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QWidget, QListWidgetItem
 from acc import Ui_Form as Ui_AccountWindow
 from PyQt6 import QtCore
-from csv import DictReader
+from csv import DictReader, DictWriter
 
 
 class AccountWindow(QWidget, Ui_AccountWindow):
@@ -36,6 +36,7 @@ class AccountWindow(QWidget, Ui_AccountWindow):
                                           "smtpauth", "smtpuname", "smtppass", "imapserv", "imapport",
                                           "imapsec", "imapauth", "imapuname", "imappass"])
             w.writerows(self.r)
+        self.listWidget.takeItem(row)
 
     def save(self):
         row = self.listWidget.currentRow()
@@ -56,9 +57,10 @@ class AccountWindow(QWidget, Ui_AccountWindow):
             "imappass": self.imap_pass_line.text()
         }
         with open("accounts.csv", "w") as f:
-            w = DictWriter(f, fieldnames=ACCOUNT_FIELDNAMES)
+            w = DictWriter(f, fieldnames=["addr", "name", "smtpserv", "smtpport", "smtpsec",
+                                          "smtpauth", "smtpuname", "smtppass", "imapserv", "imapport",
+                                          "imapsec", "imapauth", "imapuname", "imappass"])
             w.writerows(self.r)
-        self.listWidget.takeItem(row)
 
     def show_acc(self, item):
         data = item.data(QtCore.Qt.ItemDataRole.UserRole)
