@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QWidget, QListWidget, QListWidgetItem, QFileDialog
 from PyQt6 import QtCore
 from att import Ui_Form as Ui_AttachmentListItem
+from sqlite3 import connect
 
 
 class AttachmentList(QListWidget):
