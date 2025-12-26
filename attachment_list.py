@@ -61,8 +61,8 @@ class AttachmentListItem(QWidget, Ui_AttachmentListItem):
         f = QFileDialog.getSaveFileName(self, "Save")[0]
         try:
             con = connect("attachments.db")
-            cur = CON.cursor()
+            cur = con.cursor()
             with open(f, "wb") as w:
-                w.write(CUR.execute(f"select data from attachments where id = '{self.file_id}'").fetchone()[0])
+                w.write(cur.execute(f"select data from attachments where id = '{self.file_id}'").fetchone()[0])
         except Exception as e:
             print(type(e), e)
