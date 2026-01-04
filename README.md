@@ -1,2 +1,1 @@
-# alarick_mail
-Project for yandex lyceum
+# Project for yandex lyceum
